@@ -1,5 +1,5 @@
-(function() {
-var app = angular.module('englishPremierLeague', []);
+
+var app = angular.module('englishPremierLeague', ['ngRoute']);
 
 app.controller('mainController',['$http',function($http){
 	var main = this;
@@ -36,7 +36,22 @@ app.controller('mainController',['$http',function($http){
           console.log(response);
 
         });
-
 	}
+	this.loadAllMatches();
+
 }]);
-})();
+app.config(function($routeProvider) {
+  $routeProvider
+  .when("/", {
+    templateUrl : "angular/results.html"
+  })
+  .when("/red", {
+    templateUrl : "red.htm"
+  })
+  .when("/green", {
+    templateUrl : "green.htm"
+  })
+  .when("/blue", {
+    templateUrl : "blue.htm"
+  });
+});
