@@ -1,29 +1,24 @@
-app.config(['$routeProvider', function($routeProvider){
-    $routeProvider
-        .when('/',{
-            // location of the template
-        	templateUrl		: 'views/results.html',
-        	// Which controller it should use 
-            controller 		: 'mainController',
-            // what is the alias of that controller.
-        	controllerAs 	: 'matchData'
-        })
-        .when('/create',{
-        	templateUrl     : 'views/create-view.html',
-        	controller 		: 'blogCreateController',
-        	controllerAs 	: 'currentBlog'
-        })
-        .when('/blog/:blogId',{
+app.config(['$routeProvider', function($routeProvider) {
+ $routeProvider
+  .when('/', {
+   templateUrl: 'views/results.html',
+   controller: 'mainController',
+   controllerAs: 'matchData'
+  })
+  .when('/table', {
+   templateUrl: 'views/table.html',
+   controller: 'tableController',
+   controllerAs: 'tableData'
+  })
+  .when('/match/:round/:date/:team1/:team2/:score1/:score2', {
 
-        	templateUrl     : 'views/blog-view.html',
-        	controller 		: 'singleBlogController',
-        	controllerAs 	: 'singleBlog'
-        })
+   templateUrl: 'views/matchView.html',
+   controller: 'matchController',
+   controllerAs: 'matchView',
+   cache: false
+  })
 
-        .otherwise(
-            {
-                //redirectTo:'/'
-                template   : '<h1>404 page not found</h1>'
-            }
-        );
-}]);
+ .otherwise({
+  template: '<h1>404 page not found</h1>'
+ });
+}])
